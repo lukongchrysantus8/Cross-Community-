@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Community - Connecting Believers Everywhere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0F172A;
+            --accent-gold: #D4A017;
+            --bg-white: #F8FAFC;
+            --secondary-green: #A3B18A;
+            --tertiary-beige: #EFE6DD;
+            --text-dark: #1a2332;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Sora', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--primary-navy);
+        }
+
+        a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-green);
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        .nav-brand span {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .lang-select, .logout-btn {
+            padding: 8px 12px;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .guest-badge {
+            padding: 6px 12px;
+            background: var(--secondary-green);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HOME PAGE */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, rgba(15, 23, 42, 0.9) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .btn-primary:hover {
+            background: #c99000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 160, 23, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-navy);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-navy);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .interaction-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-icon {
+            padding: 6px 12px;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--secondary-green);
+            color: white;
+            border-color: var(--secondary-green);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #c99000;
+        }
+
+        /* FEED */
+        .feed-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feed-post {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 0.75rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-navy);
+            font-weight: bold;
+        }
+
+        .post-info {
+            flex: 1;
+        }
+
+        .post-name {
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .post-time {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .post-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--bg-white);
+            color: var(--secondary-green);
+            border: 1px solid var(--secondary-green);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-badge.prayer {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .post-badge.testimony {
+            color: var(--success);
+            border-color: var(--success);
+        }
+
+        /* PRAYER NETWORK */
+        .prayer-request {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.05) 0%, rgba(163, 177, 138, 0.05) 100%);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .prayer-request h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .prayer-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .prayer-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* GROUPS */
+        .group-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .group-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 16px rgba(212, 160, 23, 0.1);
+        }
+
+        .group-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .group-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .group-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .btn-join {
+            padding: 8px 16px;
+            background: var(--secondary-green);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-join:hover {
+            background: #8fa775;
+        }
+
+        .btn-join.joined {
+            background: var(--success);
+        }
+
+        /* TESTIMONIALS */
+        .testimonial {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-meta h4 {
+            margin-bottom: 0.25rem;
+            color: var(--primary-navy);
+        }
+
+        .testimonial-meta p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 2rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+        }
+
+        /* COUNSELOR SECTION */
+        .counselor-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, rgba(15, 23, 42, 0.95) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .counselor-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .counselor-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            margin: 0;
+            word-break: break-all;
+        }
+
+        .contact-item a {
+            color: var(--accent-gold);
+        }
+
+        .counselor-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-counselor {
+            padding: 12px 24px;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-counselor:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .donate-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background: white;
+        }
+
+        /* AUTH PAGES */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .auth-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary-navy);
+        }
+
+        .auth-form p {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form .btn-submit {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .auth-toggle a {
+            color: var(--accent-gold);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* DASHBOARD */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu button {
+            width: 100%;
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-menu button:hover,
+        .sidebar-menu button.active {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            border-color: var(--accent-gold);
+        }
+
+        /* MESSAGES */
+        .messages-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .conversations-list {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .conversation-item {
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .conversation-item:hover,
+        .conversation-item.active {
+            background: var(--bg-white);
+            border-color: var(--accent-gold);
+        }
+
+        .chat-window {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            background: var(--bg-white);
+            padding: 10px 14px;
+            border-radius: 8px;
+            max-width: 70%;
+            word-break: break-word;
+        }
+
+        .message.sent .message-bubble {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .chat-input {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .messages-container {
+                grid-template-columns: 1fr;
+            }
+
+            .messages-container .conversations-list {
+                display: none;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .container-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideInRight 0.3s ease;
+            z-index: 999;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .success-badge {
+            color: var(--success);
+        }
+
+        .profile-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .profile-info {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .large-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-navy);
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .profile-details h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-stat {
+            display: inline-block;
+            margin-right: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .profile-stat strong {
+            color: var(--accent-gold);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .empty-state h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+        <div class="nav-brand">
+            ✞ <span>Cross</span> Community
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('feed')">Community</a></li>
+            <li><a href="#" onclick="showPage('groups')">Groups</a></li>
+            <li><a href="#" onclick="showPage('messages')">Messages</a></li>
+            <li><a href="#" onclick="showPage('prayers')">Prayers</a></li>
+            <li><a href="#" onclick="showPage('profile')">Profile</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="guest-badge">Guest Access</span>
+            <select class="lang-select" onchange="changeLanguage(this.value)" id="langSelect">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="pidgin">Pidgin</option>
+                <option value="tr">Türkçe</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 id="heroTitle">A Faith-Centered Community Built for Connection</h1>
+            <p id="heroSubtitle">Join believers worldwide to share prayer, encouragement, testimonies, events, and fellowship.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="showPage('feed')">Explore Community</button>
+                <button class="btn-secondary" onclick="showPage('groups')">Explore Groups</button>
+            </div>
+        </div>
+
+        <!-- Community Feed Preview -->
+        <section>
+            <div class="section-title">
+                <h2 id="feedPreviewTitle">Community Highlights</h2>
+                <p id="feedPreviewDesc">See what believers are sharing today</p>
+            </div>
+            <div class="feed-container" id="homeFeedPreview">
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="post-avatar">JD</div>
+                        <div class="post-info">
+                            <div class="post-name">John David</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="post-badge prayer">PRAYER REQUEST</span>
+                    <div class="post-content">Please pray for my family during this difficult transition. We need God's guidance and strength.</div>
+                    <div class="interaction-buttons">
+                        <button class="btn-icon">🙏 Praying (12)</button>
+                        <button class="btn-icon">💬 Encourage</button>
+                        <button class="btn-icon">❤️ Support</button>
+                    </div>
+                </div>
+
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="post-avatar">SM</div>
+                        <div class="post-info">
+                            <div class="post-name">Sarah Miller</div>
+                            <div class="post-time">5 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="post-badge testimony">TESTIMONY</span>
+                    <div class="post-content">God has been so faithful! After months of prayer, He opened a door for my dream job. All glory to Him! 🙌</div>
+                    <div class="interaction-buttons">
+                        <button class="btn-icon">✨ Praise (34)</button>
+                        <button class="btn-icon">❤️ Love (28)</button>
+                        <button class="btn-icon">💬 Share (8)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Groups Section -->
+        <section>
+            <div class="section-title">
+                <h2 id="groupsTitle">Featured Groups</h2>
+                <p id="groupsDesc">Join a community that shares your interests</p>
+            </div>
+            <div class="container-grid" id="homeGroups">
+                <div class="group-card">
+                    <div class="group-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Families</h3>
+                    <p>Connect with other Christian families for support, advice, and fellowship.</p>
+                    <div class="group-meta">
+                        <span>1,240 members</span>
+                        <span>235 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('families')">Join Group</button>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">🎵</div>
+                    <h3>Worship Leaders</h3>
+                    <p>For musicians, singers, and worship team members to share resources and inspiration.</p>
+                    <div class="group-meta">
+                        <span>856 members</span>
+                        <span>412 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('worship')">Join Group</button>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">📚</div>
+                    <h3>Bible Study Groups</h3>
+                    <p>Deep dive into Scripture with guided studies and thoughtful discussions.</p>
+                    <div class="group-meta">
+                        <span>2,103 members</span>
+                        <span>892 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('biblestudy')">Join Group</button>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">💼</div>
+                    <h3>Christian Entrepreneurs</h3>
+                    <p>Business owners combining faith with entrepreneurship for impact and success.</p>
+                    <div class="group-meta">
+                        <span>742 members</span>
+                        <span>328 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('entrepreneurs')">Join Group</button>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">⛪</div>
+                    <h3>Youth Fellowship</h3>
+                    <p>Young believers growing in faith, sharing experiences, and making an impact.</p>
+                    <div class="group-meta">
+                        <span>3,521 members</span>
+                        <span>1,240 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('youth')">Join Group</button>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">🌍</div>
+                    <h3>Missions & Outreach</h3>
+                    <p>Share mission trips, volunteering opportunities, and global ministry work.</p>
+                    <div class="group-meta">
+                        <span>1,634 members</span>
+                        <span>567 posts</span>
+                    </div>
+                    <button class="btn-join" onclick="joinGroup('missions')">Join Group</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prayer Network -->
+        <section>
+            <div class="section-title">
+                <h2 id="prayerNetworkTitle">Prayer Network</h2>
+                <p id="prayerNetworkDesc">Join thousands praying together for needs around the world</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div class="prayer-request">
+                    <h4>Healing and Strength</h4>
+                    <p>Praying for Michael who is recovering from surgery. He needs God's grace and healing touch.</p>
+                    <div class="prayer-stats">
+                        <div class="prayer-stat">🙏 <strong>487</strong> praying</div>
+                        <div class="prayer-stat">✨ <strong>23</strong> answered</div>
+                    </div>
+                </div>
+
+                <div class="prayer-request">
+                    <h4>Job Search & Direction</h4>
+                    <p>Please pray for believers seeking employment and asking God for guidance in their career path.</p>
+                    <div class="prayer-stats">
+                        <div class="prayer-stat">🙏 <strong>342</strong> praying</div>
+                        <div class="prayer-stat">✨ <strong>19</strong> answered</div>
+                    </div>
+                </div>
+
+                <div class="prayer-request">
+                    <h4>Broken Relationships</h4>
+                    <p>Many are praying for reconciliation in marriages and family relationships. God can heal.</p>
+                    <div class="prayer-stats">
+                        <div class="prayer-stat">🙏 <strong>612</strong> praying</div>
+                        <div class="prayer-stat">✨ <strong>87</strong> answered</div>
+                    </div>
+                </div>
+
+                <button class="btn-primary" style="width: 100%; margin-top: 2rem;" onclick="showPage('prayers')">Submit Your Prayer Request</button>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section>
+            <div class="section-title">
+                <h2 id="testimonialsTitle">Member Testimonies</h2>
+                <p id="testimonialsDesc">Stories of faith, hope, and God's faithfulness</p>
+            </div>
+            <div class="container-grid">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">EM</div>
+                        <div class="testimonial-meta">
+                            <h4>Emily Martinez</h4>
+                            <p>Testimony of Faith</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">Three years ago, I was lost and broken. This community welcomed me, prayed with me, and showed me Christ's love. Today, I'm renewed, purposeful, and serving others.</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">TC</div>
+                        <div class="testimonial-meta">
+                            <h4>Thomas Chen</h4>
+                            <p>Spiritual Growth Journey</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">The Bible study groups here deepened my understanding of Scripture. Not only did I grow spiritually, but I found lifelong brothers and sisters in Christ.</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">AK</div>
+                        <div class="testimonial-meta">
+                            <h4>Angela Kim</h4>
+                            <p>Community Impact</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">Being part of Cross Community reignited my passion for ministry. Together, we've helped dozens of families and made a real difference in our city.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Counselor Section -->
+        <section>
+            <div class="counselor-section">
+                <h2>Need Prayer or Counseling?</h2>
+                <p>We are here to pray with you, encourage you, and support your spiritual journey. Reach out anytime for counseling, prayer support, partnership, or donations to help grow the Cross Community mission.</p>
+
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="icon">📧</div>
+                        <p><a href="mailto:Lukongchrysantus7@gmail.com">Lukongchrysantus7@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📱</div>
+                        <p><a href="tel:+237671187375">+237 671 187 375</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">💬</div>
+                        <p><a href="https://wa.me/237711873575">WhatsApp: +237 711 873 575</a></p>
+                    </div>
+                </div>
+
+                <div class="counselor-buttons">
+                    <button class="btn-counselor" onclick="showModal('counselorModal')">Contact Counselor</button>
+                    <button class="btn-counselor" onclick="showModal('donateModal')">Support the Mission</button>
+                    <button class="btn-counselor" onclick="showPage('prayers')">Request Prayer</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FEED PAGE -->
+    <div id="feedPage" class="page">
+        <section>
+            <div class="section-title">
+                <h2 id="communityFeedTitle">Community Feed</h2>
+                <p id="communityFeedDesc">Share your thoughts, prayers, and encouragement with the community</p>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">
+                <button class="btn-primary" style="width: 100%;" onclick="showModal('createPostModal')">Create a Post</button>
+            </div>
+
+            <div class="feed-container" id="communityFeed">
+                <div class="empty-state">
+                    <h3>No posts yet</h3>
+                    <p>Be the first to share your thoughts with the community!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GROUPS PAGE -->
+    <div id="groupsPage" class="page">
+        <section>
+            <div class="section-title">
+                <h2 id="allGroupsTitle">All Groups</h2>
+                <p id="allGroupsDesc">Find and join communities that inspire your faith journey</p>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">
+                <input type="text" id="groupSearch" placeholder="Search groups..." style="width: 100%; padding: 12px;">
+            </div>
+
+            <div class="container-grid" id="allGroups"></div>
+        </section>
+    </div>
+
+    <!-- PRAYERS PAGE -->
+    <div id="prayersPage" class="page">
+        <section>
+            <div class="section-title">
+                <h2 id="prayerRequestsTitle">Prayer Requests</h2>
+                <p id="prayerRequestsDesc">Share your needs and pray for others</p>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">
+                <button class="btn-primary" style="width: 100%;" onclick="showModal('prayerModal')">Submit Prayer Request</button>
+            </div>
+
+            <div class="feed-container" id="prayersList">
+                <div class="empty-state">
+                    <h3>No prayer requests yet</h3>
+                    <p>Start by submitting a prayer request for the community to support</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MESSAGES PAGE -->
+    <div id="messagesPage" class="page">
+        <section>
+            <div class="messages-container">
+                <div class="conversations-list" id="conversationsList">
+                    <h3>Conversations</h3>
+                </div>
+
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <h3 id="chatTitle">Select a conversation</h3>
+                    </div>
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input" id="chatInput" style="display: none;">
+                        <input type="text" id="messageInput" placeholder="Type a message...">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="profilePage" class="page">
+        <section>
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="large-avatar" id="profileAvatar">JD</div>
+                        <div class="profile-details">
+                            <h2 id="profileName">John Doe</h2>
+                            <p id="profileEmail">john@example.com</p>
+                            <div class="profile-stat"><strong>Posts:</strong> <span id="userPosts">0</span></div>
+                            <div class="profile-stat"><strong>Groups Joined:</strong> <span id="userGroups">0</span></div>
+                            <div class="profile-stat"><strong>Member Since:</strong> <span id="memberSince">Today</span></div>
+                        </div>
+                    </div>
+
+                    <h3>My Groups</h3>
+                    <div id="myGroups" style="margin-bottom: 2rem;">
+                        <p style="color: var(--text-light);">No groups joined yet</p>
+                    </div>
+
+                    <h3>My Posts</h3>
+                    <div id="myPosts">
+                        <p style="color: var(--text-light);">No posts yet</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Share with Community</h2>
+                <button class="close-btn" onclick="closeModal('createPostModal')">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Post Type</label>
+                <select id="postType" style="width: 100%;">
+                    <option value="">Choose type</option>
+                    <option value="prayer">Prayer Request</option>
+                    <option value="testimony">Testimony</option>
+                    <option value="encouragement">Encouragement</option>
+                    <option value="scripture">Scripture Sharing</option>
+                    <option value="general">General Discussion</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Your Message</label>
+                <textarea id="postContent" placeholder="Share your thoughts..."></textarea>
+            </div>
+
+            <button class="btn-submit" onclick="createPost()">Post to Community</button>
+        </div>
+    </div>
+
+    <!-- Prayer Request Modal -->
+    <div id="prayerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Submit Prayer Request</h2>
+                <button class="close-btn" onclick="closeModal('prayerModal')">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Prayer Title</label>
+                <input type="text" id="prayerTitle" placeholder="What should we pray about?">
+            </div>
+
+            <div class="form-group">
+                <label>Prayer Details</label>
+                <textarea id="prayerDetails" placeholder="Share more about your prayer request..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="anonymousPrayer">
+                    Keep this request anonymous
+                </label>
+            </div>
+
+            <button class="btn-submit" onclick="submitPrayerRequest()">Submit Prayer Request</button>
+        </div>
+    </div>
+
+    <!-- Counselor Contact Modal -->
+    <div id="counselorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contact Counselor</h2>
+                <button class="close-btn" onclick="closeModal('counselorModal')">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="counselorName" placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" id="counselorSubject" placeholder="What do you need help with?">
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea id="counselorMessage" placeholder="Tell us how we can help..."></textarea>
+            </div>
+
+            <button class="btn-submit" onclick="submitCounseling()">Send Message</button>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Support the Mission</h2>
+                <button class="close-btn" onclick="closeModal('donateModal')">&times;</button>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; color: var(--text-light);">Your generous donation helps us connect believers and spread God's kingdom worldwide.</p>
+
+            <div class="form-group">
+                <label>Donation Amount</label>
+                <select id="donationAmount" style="width: 100%;">
+                    <option value="">Select amount</option>
+                    <option value="10">$10 USD</option>
+                    <option value="25">$25 USD</option>
+                    <option value="50">$50 USD</option>
+                    <option value="100">$100 USD</option>
+                    <option value="custom">Custom amount</option>
+                </select>
+            </div>
+
+            <div id="customAmountField" class="form-group hidden">
+                <label>Custom Amount (USD)</label>
+                <input type="number" id="customAmount" placeholder="Enter amount" min="1">
+            </div>
+
+            <div class="form-group">
+                <label>Email for Receipt</label>
+                <input type="email" id="donationEmail" placeholder="your@email.com">
+            </div>
+
+            <button class="btn-submit" onclick="processDonation()">Donate Now</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('about')">About Cross Community</a></li>
+                    <li><a href="#" onclick="showSection('mission')">Our Mission</a></li>
+                    <li><a href="#" onclick="showSection('team')">Our Team</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="#" onclick="showPage('groups')">Groups</a></li>
+                    <li><a href="#" onclick="showPage('feed')">Feed</a></li>
+                    <li><a href="#" onclick="showPage('prayers')">Prayer Network</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Community Guidelines</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">𝕏</a>
+                    <a href="#">📷</a>
+                    <a href="#">▶️</a>
+                </div>
+                <button class="donate-btn" onclick="showModal('donateModal')">💝 Donate</button>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cross Community. Connecting believers everywhere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // TRANSLATIONS
+        const translations = {
+            en: {
+                heroTitle: "A Faith-Centered Community Built for Connection",
+                heroSubtitle: "Join believers worldwide to share prayer, encouragement, testimonies, events, and fellowship.",
+                feedPreviewTitle: "Community Highlights",
+                feedPreviewDesc: "See what believers are sharing today",
+                groupsTitle: "Featured Groups",
+                groupsDesc: "Join a community that shares your interests",
+                prayerNetworkTitle: "Prayer Network",
+                prayerNetworkDesc: "Join thousands praying together for needs around the world",
+                testimonialsTitle: "Member Testimonies",
+                testimonialsDesc: "Stories of faith, hope, and God's faithfulness",
+                communityFeedTitle: "Community Feed",
+                communityFeedDesc: "Share your thoughts, prayers, and encouragement with the community",
+                allGroupsTitle: "All Groups",
+                allGroupsDesc: "Find and join communities that inspire your faith journey",
+                prayerRequestsTitle: "Prayer Requests",
+                prayerRequestsDesc: "Share your needs and pray for others"
+            },
+            fr: {
+                heroTitle: "Une communauté centrée sur la foi construite pour la connexion",
+                heroSubtitle: "Rejoignez les croyants du monde entier pour partager la prière, l'encouragement, les témoignages, les événements et la communion.",
+                feedPreviewTitle: "Points forts de la communauté",
+                feedPreviewDesc: "Voir ce que les croyants partagent aujourd'hui",
+                groupsTitle: "Groupes en vedette",
+                groupsDesc: "Rejoignez une communauté qui partage vos intérêts",
+                prayerNetworkTitle: "Réseau de prière",
+                prayerNetworkDesc: "Rejoignez des milliers de personnes qui prient ensemble pour les besoins du monde",
+                testimonialsTitle: "Témoignages des membres",
+                testimonialsDesc: "Histoires de foi, d'espoir et de fidélité de Dieu",
+                communityFeedTitle: "Flux communautaire",
+                communityFeedDesc: "Partagez vos pensées, vos prières et vos encouragements avec la communauté",
+                allGroupsTitle: "Tous les groupes",
+                allGroupsDesc: "Trouvez et rejoignez des communautés qui inspirent votre parcours de foi",
+                prayerRequestsTitle: "Demandes de prière",
+                prayerRequestsDesc: "Partagez vos besoins et priez pour les autres"
+            },
+            pidgin: {
+                heroTitle: "Faith Community Wey Build for Connection",
+                heroSubtitle: "Join believers from all over world make prayer, encouragement, testimony, events and fellowship together.",
+                feedPreviewTitle: "Community Good News",
+                feedPreviewDesc: "See wetin believers dey share today",
+                groupsTitle: "Featured Groups",
+                groupsDesc: "Join community wey get your interest",
+                prayerNetworkTitle: "Prayer Network",
+                prayerNetworkDesc: "Join thousands wey dey pray together for needs around world",
+                testimonialsTitle: "Member Stories",
+                testimonialsDesc: "Stories of faith, hope, and how God faithful",
+                communityFeedTitle: "Community News",
+                communityFeedDesc: "Share your thoughts, prayers, and encouragement with community",
+                allGroupsTitle: "All Groups",
+                allGroupsDesc: "Find and join communities wey go inspire your faith journey",
+                prayerRequestsTitle: "Prayer Requests",
+                prayerRequestsDesc: "Share your needs and pray for others"
+            },
+            tr: {
+                heroTitle: "Bağlantı İçin İnşa Edilmiş İman Merkezli Bir Topluluk",
+                heroSubtitle: "Dünyanın dört bir yanındaki inananlarla dua, teşvik, tanıklık, etkinlik ve kardeşlik paylaşmak için katılın.",
+                feedPreviewTitle: "Topluluk Vurguları",
+                feedPreviewDesc: "Bugün inananların neler paylaştığını görün",
+                groupsTitle: "Öne Çıkan Gruplar",
+                groupsDesc: "İlgilerinizi paylaşan bir topluluğa katılın",
+                prayerNetworkTitle: "Dua Ağı",
+                prayerNetworkDesc: "Dünya çapındaki ihtiyaçlar için birlikte dua eden binlerce kişiye katılın",
+                testimonialsTitle: "Üye Tanıklıkları",
+                testimonialsDesc: "İman, umut ve Tanrı'nın sadakati hakkında hikayeler",
+                communityFeedTitle: "Topluluk Akışı",
+                communityFeedDesc: "Düşüncelerinizi, dualarınızı ve teşviklerinizi toplulukla paylaşın",
+                allGroupsTitle: "Tüm Gruplar",
+                allGroupsDesc: "İman yolculuğunuzu ilham verecek toplulukları bulun ve katılın",
+                prayerRequestsTitle: "Dua İstekleri",
+                prayerRequestsDesc: "İhtiyaçlarınızı paylaşın ve diğerleri için dua edin"
+            }
+        };
+
+        let currentLanguage = 'en';
+        let currentUser = { id: 'guest', name: 'Guest Visitor', email: 'guest@crosscommunity.com', joinDate: new Date().toLocaleDateString() };
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let prayerRequests = JSON.parse(localStorage.getItem('prayerRequests')) || [];
+        let userGroups = JSON.parse(localStorage.getItem('userGroups')) || {};
+        let messages = JSON.parse(localStorage.getItem('messages')) || [];
+        let conversations = JSON.parse(localStorage.getItem('conversations')) || [];
+
+        const allGroupsData = [
+            { id: 'families', name: 'Families', icon: '👨‍👩‍👧‍👦', description: 'Connect with other Christian families for support, advice, and fellowship.' },
+            { id: 'worship', name: 'Worship Leaders', icon: '🎵', description: 'For musicians, singers, and worship team members to share resources and inspiration.' },
+            { id: 'biblestudy', name: 'Bible Study Groups', icon: '📚', description: 'Deep dive into Scripture with guided studies and thoughtful discussions.' },
+            { id: 'entrepreneurs', name: 'Christian Entrepreneurs', icon: '💼', description: 'Business owners combining faith with entrepreneurship for impact and success.' },
+            { id: 'youth', name: 'Youth Fellowship', icon: '⛪', description: 'Young believers growing in faith, sharing experiences, and making an impact.' },
+            { id: 'missions', name: 'Missions & Outreach', icon: '🌍', description: 'Share mission trips, volunteering opportunities, and global ministry work.' }
+        ];
+
+        // AUTO-LOGIN AS GUEST
+        function initializeApp() {
+            // Ensure guest user is set
+            if (!currentUser || currentUser.id !== 'guest') {
+                currentUser = { id: 'guest', name: 'Guest Visitor', email: 'guest@crosscommunity.com', joinDate: new Date().toLocaleDateString() };
+            }
+            
+            // Initialize guest user groups
+            if (!userGroups['guest']) {
+                userGroups['guest'] = [];
+            }
+            
+            // Load all data
+            updateProfile();
+            loadAllGroups();
+            loadCommunityFeed();
+            loadPrayers();
+            showNotification('Welcome to Cross Community! You have full access as a guest.');
+        }
+
+        // PAGE NAVIGATION
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId + 'Page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // MODAL FUNCTIONS
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // LANGUAGE
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+
+            if (translations[lang]) {
+                document.getElementById('heroTitle').textContent = translations[lang].heroTitle;
+                document.getElementById('heroSubtitle').textContent = translations[lang].heroSubtitle;
+                document.getElementById('feedPreviewTitle').textContent = translations[lang].feedPreviewTitle;
+                document.getElementById('feedPreviewDesc').textContent = translations[lang].feedPreviewDesc;
+                document.getElementById('groupsTitle').textContent = translations[lang].groupsTitle;
+                document.getElementById('groupsDesc').textContent = translations[lang].groupsDesc;
+                document.getElementById('prayerNetworkTitle').textContent = translations[lang].prayerNetworkTitle;
+                document.getElementById('prayerNetworkDesc').textContent = translations[lang].prayerNetworkDesc;
+                document.getElementById('testimonialsTitle').textContent = translations[lang].testimonialsTitle;
+                document.getElementById('testimonialsDesc').textContent = translations[lang].testimonialsDesc;
+                document.getElementById('communityFeedTitle').textContent = translations[lang].communityFeedTitle;
+                document.getElementById('communityFeedDesc').textContent = translations[lang].communityFeedDesc;
+                document.getElementById('allGroupsTitle').textContent = translations[lang].allGroupsTitle;
+                document.getElementById('allGroupsDesc').textContent = translations[lang].allGroupsDesc;
+                document.getElementById('prayerRequestsTitle').textContent = translations[lang].prayerRequestsTitle;
+                document.getElementById('prayerRequestsDesc').textContent = translations[lang].prayerRequestsDesc;
+            }
+
+            localStorage.setItem('language', lang);
+            showNotification('Language changed');
+        }
+
+        // GROUPS
+        function loadAllGroups() {
+            const container = document.getElementById('allGroups');
+            const homeGroups = document.getElementById('homeGroups');
+            
+            let html = '';
+            allGroupsData.forEach(group => {
+                const isJoined = userGroups[currentUser.id] && userGroups[currentUser.id].includes(group.id);
+                html += `
+                    <div class="group-card">
+                        <div class="group-icon">${group.icon}</div>
+                        <h3>${group.name}</h3>
+                        <p>${group.description}</p>
+                        <div class="group-meta">
+                            <span>${Math.floor(Math.random() * 3000) + 500} members</span>
+                            <span>${Math.floor(Math.random() * 1500) + 50} posts</span>
+                        </div>
+                        <button class="btn-join ${isJoined ? 'joined' : ''}" onclick="joinGroup('${group.id}')">${isJoined ? '✓ Joined' : 'Join Group'}</button>
+                    </div>
+                `;
+            });
+
+            if (container) container.innerHTML = html;
+            if (homeGroups && homeGroups.id === 'homeGroups') homeGroups.innerHTML = html.split('').slice(0, 6);
+        }
+
+        function joinGroup(groupId) {
+            if (!currentUser) {
+                showNotification('Please login first', 'error');
+                return;
+            }
+
+            if (!userGroups[currentUser.id]) {
+                userGroups[currentUser.id] = [];
+            }
+
+            const index = userGroups[currentUser.id].indexOf(groupId);
+            if (index === -1) {
+                userGroups[currentUser.id].push(groupId);
+                showNotification('Joined group successfully!');
+            } else {
+                userGroups[currentUser.id].splice(index, 1);
+                showNotification('Left group');
+            }
+
+            localStorage.setItem('userGroups', JSON.stringify(userGroups));
+            loadAllGroups();
+            updateProfile();
+        }
+
+        // COMMUNITY FEED
+        function createPost() {
+            if (!currentUser) {
+                showNotification('Please login first', 'error');
+                return;
+            }
+
+            const postType = document.getElementById('postType').value;
+            const content = document.getElementById('postContent').value;
+
+            if (!postType || !content) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            const newPost = {
+                id: Date.now(),
+                userId: currentUser.id,
+                userName: currentUser.name,
+                type: postType,
+                content: content,
+                timestamp: new Date().toLocaleString(),
+                reactions: { amen: 0, praying: 0, encourage: 0 }
+            };
+
+            posts.push(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            loadCommunityFeed();
+            closeModal('createPostModal');
+            document.getElementById('postType').value = '';
+            document.getElementById('postContent').value = '';
+            showNotification('Post created successfully!');
+        }
+
+        function loadCommunityFeed() {
+            const container = document.getElementById('communityFeed');
+            
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No posts yet</h3>
+                        <p>Be the first to share your thoughts with the community!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            posts.slice().reverse().forEach(post => {
+                const badges = { prayer: '🙏 PRAYER REQUEST', testimony: '✨ TESTIMONY', encouragement: '💪 ENCOURAGEMENT', scripture: '📖 SCRIPTURE', general: '💬 DISCUSSION' };
+                html += `
+                    <div class="feed-post">
+                        <div class="post-header">
+                            <div class="post-avatar">${post.userName.substring(0, 2).toUpperCase()}</div>
+                            <div class="post-info">
+                                <div class="post-name">${post.userName}</div>
+                                <div class="post-time">${post.timestamp}</div>
+                            </div>
+                        </div>
+                        <span class="post-badge ${post.type === 'prayer' ? 'prayer' : post.type === 'testimony' ? 'testimony' : ''}">${badges[post.type] || badges['general']}</span>
+                        <div class="post-content">${post.content}</div>
+                        <div class="interaction-buttons">
+                            <button class="btn-icon">🙏 Praying (${post.reactions.praying})</button>
+                            <button class="btn-icon">💬 Encourage (${post.reactions.encourage})</button>
+                            <button class="btn-icon">❤️ Support (${post.reactions.amen})</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // PRAYER REQUESTS
+        function submitPrayerRequest() {
+            if (!currentUser) {
+                showNotification('Please login first', 'error');
+                return;
+            }
+
+            const title = document.getElementById('prayerTitle').value;
+            const details = document.getElementById('prayerDetails').value;
+            const anonymous = document.getElementById('anonymousPrayer').checked;
+
+            if (!title || !details) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            const newRequest = {
+                id: Date.now(),
+                userId: anonymous ? 'anonymous' : currentUser.id,
+                userName: anonymous ? 'Anonymous' : currentUser.name,
+                title: title,
+                details: details,
+                timestamp: new Date().toLocaleString(),
+                prayerCount: 0,
+                answered: false
+            };
+
+            prayerRequests.push(newRequest);
+            localStorage.setItem('prayerRequests', JSON.stringify(prayerRequests));
+            loadPrayers();
+            closeModal('prayerModal');
+            document.getElementById('prayerTitle').value = '';
+            document.getElementById('prayerDetails').value = '';
+            document.getElementById('anonymousPrayer').checked = false;
+            showNotification('Prayer request submitted!');
+        }
+
+        function loadPrayers() {
+            const container = document.getElementById('prayersList');
+
+            if (prayerRequests.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No prayer requests yet</h3>
+                        <p>Start by submitting a prayer request for the community to support</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            prayerRequests.slice().reverse().forEach(request => {
+                html += `
+                    <div class="prayer-request" style="margin-bottom: 1.5rem;">
+                        <h4>${request.title}</h4>
+                        <p>${request.details}</p>
+                        <div class="prayer-stats">
+                            <div class="prayer-stat">🙏 <strong>${request.prayerCount}</strong> praying</div>
+                            <div class="prayer-stat">Posted: ${request.timestamp}</div>
+                        </div>
+                        <button class="btn-icon" style="margin-top: 0.75rem;" onclick="addPrayerSupport(${request.id})">🙏 I'm Praying</button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function addPrayerSupport(prayerId) {
+            const request = prayerRequests.find(r => r.id === prayerId);
+            if (request) {
+                request.prayerCount++;
+                localStorage.setItem('prayerRequests', JSON.stringify(prayerRequests));
+                loadPrayers();
+                showNotification('Thank you for praying!');
+            }
+        }
+
+        // MESSAGES
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            if (!input.value.trim()) return;
+
+            // Simple messaging implementation
+            showNotification('Message sent!');
+            input.value = '';
+        }
+
+        // PROFILE
+        function updateProfile() {
+            if (!currentUser) return;
+
+            document.getElementById('profileName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileAvatar').textContent = currentUser.name.substring(0, 2).toUpperCase();
+            document.getElementById('memberSince').textContent = currentUser.joinDate;
+
+            const userGroupCount = userGroups[currentUser.id] ? userGroups[currentUser.id].length : 0;
+            document.getElementById('userGroups').textContent = userGroupCount;
+
+            const userPostCount = posts.filter(p => p.userId === currentUser.id).length;
+            document.getElementById('userPosts').textContent = userPostCount;
+
+            // My Groups
+            let groupsHtml = '';
+            if (userGroups[currentUser.id] && userGroups[currentUser.id].length > 0) {
+                userGroups[currentUser.id].forEach(groupId => {
+                    const group = allGroupsData.find(g => g.id === groupId);
+                    if (group) {
+                        groupsHtml += `<div style="padding: 0.75rem; background: var(--bg-white); border-radius: 6px; margin-bottom: 0.5rem;">${group.icon} ${group.name}</div>`;
+                    }
+                });
+            }
+            document.getElementById('myGroups').innerHTML = groupsHtml || '<p style="color: var(--text-light);">No groups joined yet</p>';
+
+            // My Posts
+            let postsHtml = '';
+            posts.filter(p => p.userId === currentUser.id).forEach(post => {
+                postsHtml += `<div style="padding: 1rem; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1rem;">${post.content}</div>`;
+            });
+            document.getElementById('myPosts').innerHTML = postsHtml || '<p style="color: var(--text-light);">No posts yet</p>';
+        }
+
+        // COUNSELOR & DONATIONS
+        function submitCounseling() {
+            const name = document.getElementById('counselorName').value;
+            const subject = document.getElementById('counselorSubject').value;
+            const message = document.getElementById('counselorMessage').value;
+
+            if (!name || !subject || !message) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            closeModal('counselorModal');
+            document.getElementById('counselorName').value = '';
+            document.getElementById('counselorSubject').value = '';
+            document.getElementById('counselorMessage').value = '';
+            showNotification('Your message has been sent to our counselors. They will respond shortly!');
+        }
+
+        function processDonation() {
+            const amount = document.getElementById('donationAmount').value;
+            const customAmount = document.getElementById('customAmount').value;
+            const email = document.getElementById('donationEmail').value;
+
+            if (!amount || (amount === 'custom' && !customAmount) || !email) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            const finalAmount = amount === 'custom' ? customAmount : amount;
+
+            closeModal('donateModal');
+            showNotification(`Thank you for your generous donation of $${finalAmount}! A receipt will be sent to ${email}`);
+
+            document.getElementById('donationAmount').value = '';
+            document.getElementById('customAmount').value = '';
+            document.getElementById('donationEmail').value = '';
+        }
+
+        // NOTIFICATIONS
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.getElementById('langSelect').value = savedLang;
+            changeLanguage(savedLang);
+
+            document.getElementById('donationAmount').addEventListener('change', function() {
+                const customField = document.getElementById('customAmountField');
+                if (this.value === 'custom') {
+                    customField.classList.remove('hidden');
+                } else {
+                    customField.classList.add('hidden');
+                }
+            });
+
+            // Auto-initialize app for guest access
+            initializeApp();
+        });
+
+        function showSection(section) {
+            showNotification('This section is coming soon!');
+        }
+    </script>
+</body>
+</html>
